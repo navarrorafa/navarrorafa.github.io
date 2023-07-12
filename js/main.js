@@ -7,9 +7,8 @@ const api = "https://api.pexels.com/v1";
 /** @type {String} llave de permiso de la api */
 const token = "QOqsi5EgeebCWBirHaswGRZXrLjG4CvKrDvH9JeFnFwzkL7dCPLB3oXD";
 const fragment = document.createDocumentFragment();
-const fragment2 = document.createDocumentFragment();
-/** @type {String} metodo para a expresion regular para el input buscar */
-const regec = "";
+const cardImgTendencia = document.querySelector('.cardImgTendencia')
+
 
 /** @type {Object} Traigo la div que pinta el min*/
 const divTendenciaMin = document.querySelector("#divTendenciaMin");
@@ -21,10 +20,16 @@ const btnAmpliar = document.querySelector("#btnAmpliar");
 const btnMinimizar = document.querySelector("#btnMinimizar");
 /** @type {Object} boton que de busca de imagem */
 const btnBuscar = document.querySelector("#btnBuscar");
+/** @type {Object} Dom del select btn orientacion */
+const btnOrientation = document.querySelector('#btnOrientation')
 /** @type {object} Div creada para que no borre el boton Ampliar*/
 const galeriaImg = document.querySelector("#galeriaImg");
 /** @type {Object} traigo del html la DIV galeria buscar */
 const galeriaBuscar = document.querySelector('#galeriaBuscar');
+/** @type {Object} Dom da DIVGALERIA  */
+const divGaleria = document.querySelector('#divGaleria')
+
+
 
 //array
 /**@type {Array<String>} Para pintar imagens especifica de Tendencias */
@@ -67,7 +72,18 @@ const arrayTendencias = [{
 // 1-evento click para el Buscar 
 btnBuscar.addEventListener('click', () => {
     pintarBusca()
+    
 });
+
+btnOrientation.addEventListener('change', () => {
+    divGaleria.innerHTML = "";
+    pintarBusca()
+})
+
+
+
+
+
 
 //2- evento click para el  tendencias
 /** Evento click para el boton ampliar */
@@ -83,6 +99,14 @@ btnMinimizar.addEventListener('click', () => {
     ocultar()
     pintarTendenciaMinima()
 });
+
+// cardImgTendencia.addEventListener('click', (event) => {
+//     const buscar = event.target.textContent; 
+//     console.log(buscar)
+//     // pintarBuscar(buscar);
+//   });
+
+
 
 
 
@@ -199,7 +223,7 @@ const pintarTendenciaMinima = async () => {
         cardTendencia.classList.add("styleTendencia")
         /** @type {Object} Crea una Div para poner la imagem y pueda trabajar la image */
         const cardImg = document.createElement("DIV");
-        cardImg.classList.add("cardImgDiv")
+        cardImg.classList.add("cardImgTendencia")
         /** @type {Object} Crea la etiqueta imagen */
         const img = document.createElement("IMG")
         img.src = datos.src.medium;
@@ -233,7 +257,7 @@ const pintarTendenciaMaxima = async () => {
         cardTendencia.classList.add("styleTendencia")
         // crio el div para img
         const cardImg = document.createElement("DIV");
-        cardImg.classList.add("cardImgDiv")
+        cardImg.classList.add("cardImgTendencia")
         //crio el elemento
         const img = document.createElement("IMG")
         img.src = datos.src.medium;
@@ -256,45 +280,85 @@ const pintarTendenciaMaxima = async () => {
 
 
 const pintarBusca = async () => {
-
+    
     const buscar = await inputBuscar.value;
-    const regex = "";
+    const orientacion = await btnOrientation.value
+    const regexBuscar = /^(?!.*[\s!$"·$&/()]).+$/
     console.log(buscar)
-    // if (!regex.test()) {
-    //     mensajeError.textContent = "formato invalido";
-    //     return;
-    // }
-    const { ok, datos } = await apiGlobal(`${api}/search?query=${buscar}`);
-
-
-
+    const { ok, datos } = await apiGlobal(`${api}/search?query=${buscar}&orientation=${orientacion}&page=5&per_page=40`);
+    console.log(datos)
+    if (!regexBuscar.test(buscar)) {
+        alert("formato invalido")
+        return;
+    }
     try {
        
-            datos.forEaach((item) => {
-            console.log(item.photos)
+            datos.photos.forEach((item) => {
             const cardBuscar = document.createElement("DIV");
-            cardBuscar.classList.add("styleTendencia")
+            cardBuscar.classList.add("styleCardBuscar")
             // crio el div para img
             const cardImg = document.createElement("DIV");
-            cardImg.classList.add("cardImgDiv")
+            cardImg.classList.add("cardImgGaleria")
             //crio el elemento
             const img = document.createElement("IMG")
-            img.src = item[i].src.medium;
-            console.log(img)
-            //
+            img.src = item.src.medium;
+            const fotografo = document.createElement("P")
+            fotografo.textContent = item.photographer;
             const altImg = document.createElement("P")
-            altImg.textContent = "teste"
+            altImg.textContent = item.alt
+
 
             cardImg.append(img)
-            cardBuscar.append(cardImg, altImg)
+            cardBuscar.append(cardImg,fotografo, altImg)
+            fragment.append(cardBuscar)
 
         });
-        galeriaBuscar.append(fragment)
+        divGaleria.append(fragment)
     } catch (error) {
         console.log("Erro a pintar pagina ")
     }
 
 }
+
+// const pintarTendencia = async () => {
+  
+//     let tend = cardImgTendencia.target.categoria
+//     const orientacion = await btnOrientation.value
+//     const regex = "^(?!\s*$).+";
+//     const { ok, datos } = await apiGlobal(`${api}/search?query=${tend}&orientation=${orientacion}&page=5&per_page=40`);
+//     console.log(datos)
+
+
+
+//     try {
+       
+//             datos.photos.forEach((item) => {
+//             const cardBuscar = document.createElement("DIV");
+//             cardBuscar.classList.add("styleCardBuscar")
+//             // crio el div para img
+//             const cardImg = document.createElement("DIV");
+//             cardImg.classList.add("cardImgGaleria")
+//             //crio el elemento
+//             const img = document.createElement("IMG")
+//             img.src = item.src.medium;
+//             const fotografo = document.createElement("P")
+//             fotografo.textContent = item.photographer;
+//             const altImg = document.createElement("P")
+//             altImg.textContent = item.alt
+
+
+//             cardImg.append(img)
+//             cardBuscar.append(cardImg,fotografo, altImg)
+//             fragment.append(cardBuscar)
+
+//         });
+//         divGaleria.append(fragment)
+       
+//     } catch (error) {
+//         console.log("Erro a pintar pagina ")
+//     }
+
+// }
 
 
 
