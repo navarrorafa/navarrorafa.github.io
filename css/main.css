@@ -1,5 +1,6 @@
 :root {
     --colorLetraMain : #fff;
+    --colorFundo : rgb(69, 101, 187);
 }
 
 * {
@@ -16,8 +17,44 @@ header {
     text-align: center;
 }
 main {
-    background-color: rgb(69, 101, 187);
+    background-color: var(--colorFundo);
     color: var(--colorLetraMain);
     
+}
+.ocultar{
+    display: none;
+}
+
+.flexConteiner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.styleDiv {
+    flex-wrap: wrap;
+    
+}
+.styleDiv p {
+    font-size: 1.2rem;
+
+}
+
+#galeriaImg.flexConteiner {
+    justify-content: space-around;
+ }
+
+#divTendenciaMax {
+   justify-content: space-around;
+}
+
+.btn1, .btn3{
+    width: 90%;
+    background-color:  var( --colorFundo) ;
+    margin: auto;
+    color: var(--colorLetraMain);
+    font-size: 1.2rem;
+    text-align: center;
+   
 }
 
