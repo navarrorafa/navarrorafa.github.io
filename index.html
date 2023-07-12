@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscador de fotos </title>
     <link rel="stylesheet" href="css/main.css">
+</head>
 
 <body>
     <div class="gridContainer">
@@ -24,20 +25,22 @@
                     <div id="galeriaImg" class="flexConteiner">
                         <!-- aqui se puenes los articles -->
                     </div>
-                    
+
                 </div>
                 <div id="divTendenciaMax" class="styleDiv ocultar">
-                    
+
                     <button id="btnMinimizar" class="btn btn1">Ocultar Todas las tendencias</button>
                 </div>
             </section>
-            <section id="galeriaBuscar" class="styleGaleria">
-                      <select  id="btnOrientation" class="btn btn3">
-                        <option value="mostrarTodas">Mostrar Todas</option>
-                        <option value="horizontal">horizontal</option>
-                        <option value="vertical">vertical</option>
-                        <option value="cuadrado">Cuadrado</option>
-                      </select>
+            <section id="galeriaBuscar" class="styleGaleria flexConteiner">
+                <select id="btnOrientation" class="btn btn3">
+                    <option value="">Mostrar Todas</option>
+                    <option value="portretrait">horizontal</option>
+                    <option value="landscape">vertical</option>
+                    <option value="square">Cuadrado</option>
+                </select>
+                <div id="divGaleria" class="">
+                </div>
 
             </section>
 
@@ -48,7 +51,7 @@
             <p>copyrigth 2023</p>
         </footer>
     </div>
-<script src="js/main.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
