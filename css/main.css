@@ -8,7 +8,9 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+img {
+    width: 100%;
+}
 body {
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -29,8 +31,25 @@ main {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    justify-content: space-around;
+    
 }
 
+.styleCardBuscar {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 80%;
+}
+
+.cardImgGaleria {
+    width: 80%;
+}
+
+.cardBuscar {
+    flex-direction: column;
+    width: 100%;
+}
 .styleDiv {
     flex-wrap: wrap;
     
