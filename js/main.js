@@ -15,9 +15,7 @@ let query = "";
 /**@type {String} para recoger el valor de la orientacion */
 let orientacion ="";
 
-
-
-
+//  QUERY
 /** @type {Object} Traigo la div que pinta el min*/
 const divTendenciaMin = document.querySelector("#divTendenciaMin");
 /**@type {Object} Traigo la Div que pinta el Max */
@@ -86,7 +84,6 @@ btnBuscar.addEventListener('click', () => {
     page = 1
     query = inputBuscar.value
     pintarBusca()
-
 });
 
 /** evento para trocar a orientacao da imagens */
@@ -102,6 +99,7 @@ btnAmpliar.addEventListener('click', () => {
     eventoBtnAmpliar()
     pintarTendenciaMaxima()
 });
+
 /** Evento para que oculte la Div max y Mostre Div min */
 btnMinimizar.addEventListener('click', () => {
     ocultar()
@@ -132,16 +130,9 @@ document.addEventListener('click', (ev) => {
         
    
        
-    }
-  
-   
+    } 
  });
 
-
-
-
-console.log(query)
-console.log(orientacion)
 
 //FUNCIONES PARA O EVENTO
 
@@ -153,7 +144,6 @@ const eventoBtnAmpliar = () => {
     galeriaImg.classList.remove('flexConteiner')
     btnAmpliar.classList.add('ocultar')
     btnAmpliar.classList.remove("flexConteiner")
-
 }
 
 const ocultar = () => {
@@ -164,9 +154,6 @@ const ocultar = () => {
     divTendenciaMax.classList.remove('flexConteiner');
     btnAmpliar.classList.add('flexConteiner')
 }
-
-
-
 
 //FUNCION
 /**
@@ -209,9 +196,6 @@ const apiGlobal = async (api) => {
 
 
 }
-
-
-
 
 /**
  * Funcion hecha para que me haga sorteo de el arrayTencia para que me mostre de forma random na Div minimizar
@@ -272,7 +256,6 @@ const pintarTendenciaMinima = async () => {
 
 }
 
-
 /** funcion para pintar a DIV de tendencias Maximas */
 const pintarTendenciaMaxima = async () => {
 
@@ -307,7 +290,6 @@ const pintarTendenciaMaxima = async () => {
 
 
 }
-
 
 /** funcion que crea os elementos e pinta a busca de las imagens */
 const pintarBusca = async () => {
@@ -354,47 +336,6 @@ const pintarBusca = async () => {
 
 }
 
-/** Funcion para pintar todas las imagenes de tendencia en uno click */
-// const pintarTendencia = async (buscar) => {
-
-//     divGaleria.innerHTML = "";
-//     let tend =  query
-//     // orientacion = await btnOrientation.value
-//     const { ok, datos } = await apiGlobal(`${api}/search?query=${query}&orientation=${orientacion}&page=${page}&per_page=10`);
-//     console.log(datos)
-
-
-
-//     try {
-
-//         datos.photos.forEach((item) => {
-//             const cardBuscar = document.createElement("DIV");
-//             cardBuscar.classList.add("styleCardBuscar")
-//             // crio el div para img
-//             const cardImg = document.createElement("DIV");
-//             cardImg.classList.add("cardImgGaleria")
-//             //crio el elemento
-//             const img = document.createElement("IMG")
-//             img.src = item.src.medium;
-//             const fotografo = document.createElement("P")
-//             fotografo.textContent = item.photographer;
-//             const altImg = document.createElement("P")
-//             altImg.textContent = item.alt
-
-
-//             cardImg.append(img)
-//             cardBuscar.append(cardImg, fotografo, altImg)
-//             fragment.append(cardBuscar)
-
-//         });
-//         divGaleria.append(fragment)
-
-//     } catch (error) {
-//         console.log("Erro a pintar pagina ")
-//     }
-
-// };
-
 const btnPaginar =async  () => {
     const { ok, datos } = await apiGlobal(`${api}/search?query=${query}&orientation=${orientacion}&page=${page}&per_page=10`);
 
@@ -422,15 +363,6 @@ const btnPaginar =async  () => {
         btnNext.classList.remove("flexConteiner")
     }
 }
-
-
-
-
-
-
-
-
-
 
 //funciones a llamar 
 pintarTendenciaMinima()
