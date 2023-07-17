@@ -8,9 +8,20 @@
     padding: 0;
     box-sizing: border-box;
 }
-img {
-    width: 100%;
+
+.flexConteiner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+    
 }
+
+.ocultar{
+    display: none;
+}
+
+
 body {
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -23,17 +34,8 @@ main {
     color: var(--colorLetraMain);
     
 }
-.ocultar{
-    display: none;
-}
 
-.flexConteiner {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-around;
-    
-}
+
 
 .styleCardBuscar {
     display: flex;
@@ -67,7 +69,16 @@ main {
    justify-content: space-around;
 }
 
-.btn1, .btn3{
+.btn {
+     
+    
+    margin: auto;
+   
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.btn1,.btn2, .btn3{
     width: 90%;
     background-color:  var( --colorFundo) ;
     margin: auto;

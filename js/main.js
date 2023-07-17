@@ -115,7 +115,7 @@ document.addEventListener('click', (ev) => {
     if (ev.target.closest('.cardImgTendencia')) {
         query= ev.target.closest('.cardImgTendencia').dataset.categoria;
         page =1
-        pintarTendencia(query)
+        pintarBusca()
     }
 
     if (ev.target == btnBack) {
@@ -355,45 +355,45 @@ const pintarBusca = async () => {
 }
 
 /** Funcion para pintar todas las imagenes de tendencia en uno click */
-const pintarTendencia = async (buscar) => {
+// const pintarTendencia = async (buscar) => {
 
-    divGaleria.innerHTML = "";
-    let tend =  query
-    // orientacion = await btnOrientation.value
-    const { ok, datos } = await apiGlobal(`${api}/search?query=${query}&orientation=${orientacion}&page=${page}&per_page=10`);
-    console.log(datos)
-
-
-
-    try {
-
-        datos.photos.forEach((item) => {
-            const cardBuscar = document.createElement("DIV");
-            cardBuscar.classList.add("styleCardBuscar")
-            // crio el div para img
-            const cardImg = document.createElement("DIV");
-            cardImg.classList.add("cardImgGaleria")
-            //crio el elemento
-            const img = document.createElement("IMG")
-            img.src = item.src.medium;
-            const fotografo = document.createElement("P")
-            fotografo.textContent = item.photographer;
-            const altImg = document.createElement("P")
-            altImg.textContent = item.alt
+//     divGaleria.innerHTML = "";
+//     let tend =  query
+//     // orientacion = await btnOrientation.value
+//     const { ok, datos } = await apiGlobal(`${api}/search?query=${query}&orientation=${orientacion}&page=${page}&per_page=10`);
+//     console.log(datos)
 
 
-            cardImg.append(img)
-            cardBuscar.append(cardImg, fotografo, altImg)
-            fragment.append(cardBuscar)
 
-        });
-        divGaleria.append(fragment)
+//     try {
 
-    } catch (error) {
-        console.log("Erro a pintar pagina ")
-    }
+//         datos.photos.forEach((item) => {
+//             const cardBuscar = document.createElement("DIV");
+//             cardBuscar.classList.add("styleCardBuscar")
+//             // crio el div para img
+//             const cardImg = document.createElement("DIV");
+//             cardImg.classList.add("cardImgGaleria")
+//             //crio el elemento
+//             const img = document.createElement("IMG")
+//             img.src = item.src.medium;
+//             const fotografo = document.createElement("P")
+//             fotografo.textContent = item.photographer;
+//             const altImg = document.createElement("P")
+//             altImg.textContent = item.alt
 
-};
+
+//             cardImg.append(img)
+//             cardBuscar.append(cardImg, fotografo, altImg)
+//             fragment.append(cardBuscar)
+
+//         });
+//         divGaleria.append(fragment)
+
+//     } catch (error) {
+//         console.log("Erro a pintar pagina ")
+//     }
+
+// };
 
 const btnPaginar =async  () => {
     const { ok, datos } = await apiGlobal(`${api}/search?query=${query}&orientation=${orientacion}&page=${page}&per_page=10`);
